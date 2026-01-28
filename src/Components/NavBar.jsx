@@ -1,7 +1,7 @@
 import logo from "../img/logo.png";
-const NavBar = () => {
+const Navbar = () => {
   return (
-    <div className="navbar bg-base-300 shadow-sm min-h-[80px]">
+    <div className="navbar bg-base-200 shadow-sm min-h-20">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">
           <img className="w-32" src={logo} />
@@ -44,4 +44,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;
