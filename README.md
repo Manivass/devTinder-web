@@ -7,6 +7,9 @@
 - created BrowserRouter > Routes > Route
 - create outlet for Body.jsx 
 - create footer.jsx
+- Install axios
+- Install cors in backend -> add middleware cors with origin:portnumber and credientials:true
+- In axios post the backend API and withCredentials:true
 
 
 
