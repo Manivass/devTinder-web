@@ -1,11 +1,12 @@
 import React from "react";
 
 const App = () => {
-  return(
+  return (
     <div>
-      <h2>Hello World</h2>
+      <h2 className="underline text-2xl">Hello World</h2>
+      
     </div>
-  )
-}
+  );
+};
 
-export default App ;
+export default App;
