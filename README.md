@@ -18,6 +18,8 @@
 - NavBar should be updated as the userlogin
 - once the user loged in navigate to the feed Component
 - refactor the hardcoded codes
+- you should not login without access
+- if the token is not present , redirect to login Page
 
 Router-Body
 NavBar
