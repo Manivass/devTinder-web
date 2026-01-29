@@ -6,6 +6,7 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constant";
 const Navbar = () => {
   const user = useSelector((store) => store.user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogOut = async () => {
@@ -26,9 +27,9 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-200 shadow-sm min-h-20">
       <div className="flex-1">
-        <Link onClick={handleFeed} className="btn btn-ghost text-xl">
+        <a onClick={handleFeed} className="btn btn-ghost text-xl">
           <img className="w-32" src={logo} />
-        </Link>
+        </a>
       </div>
       {user && (
         <div className="flex">
