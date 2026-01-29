@@ -2,18 +2,31 @@ import { useDispatch, useSelector } from "react-redux";
 import logo from "../img/logo.png";
 import { Link, useNavigate } from "react-router";
 import { removeUser } from "../store/userSlice";
+import axios from "axios";
+import { BASE_URL } from "../utils/constant";
 const Navbar = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleLogOut = () => {
-    dispatch(removeUser());
-    navigate("/login");
+  const handleLogOut = async () => {
+    try {
+      await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
+      dispatch(removeUser());
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleFeed = () => {
+    if (user) {
+      navigate("/");
+    }
   };
   return (
     <div className="navbar bg-base-200 shadow-sm min-h-20">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost text-xl">
+        <Link onClick={handleFeed} className="btn btn-ghost text-xl">
           <img className="w-32" src={logo} />
         </Link>
       </div>

@@ -20,6 +20,7 @@
 - refactor the hardcoded codes
 - you should not login without access
 - if the token is not present , redirect to login Page
+- Logout feature
 
 Router-Body
 NavBar
