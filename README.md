@@ -22,6 +22,8 @@
 - if the token is not present , redirect to login Page
 - Logout feature
 - created Feed Slice
+- Edit Profile Feature
+- show to toast message on save of profile
 
 Router-Body
 NavBar
