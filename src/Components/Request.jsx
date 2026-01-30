@@ -1,0 +1,64 @@
+import axios from "axios";
+import React, { useEffect } from "react";
+import { BASE_URL } from "../utils/constant";
+import { useDispatch, useSelector } from "react-redux";
+import { addRequestReceived } from "../store/requestReceivedSlice";
+
+const Request = () => {
+  const request = useSelector((store) => store.requestReceived);
+  console.log(request);
+
+  const dispatch = useDispatch();
+  const fetchConnectionRequest = async () => {
+    let res = await axios.get(BASE_URL + "/user/request/received", {
+      withCredentials: true,
+    });
+    dispatch(addRequestReceived(res?.data?.connections));
+  };
+
+  useEffect(() => {
+    fetchConnectionRequest();
+  }, []);
+
+  if (!request) return;
+  if (request.length === 0)
+    return (
+      <div>
+        <p>No Request Received</p>
+      </div>
+    );
+  return (
+    <div className="max-w-2/5  mx-auto my-6">
+      <h2 className="text-center text-xl font-semibold">Connection Requests</h2>
+      {request.map((user) => {
+        return (
+          <div
+            key={user._id}
+            className="flex flex-row   justify-between items-center px-6 py-2 bg-base-300 rounded-lg my-2 shadow-md shadow-base-200 "
+          >
+            <img
+              className="w-19 h-19 rounded-full"
+              alt="photo"
+              src={user.fromUserId.photoURL}
+            />
+            <ul>
+              <li className="text-xl font-semibold ">
+                {user.fromUserId.firstName + " " + user.fromUserId.lastName}
+              </li>
+              {user.age && user.gender && (
+                <li>{user.fromUserId.age + "," + user.fromUserId.gender}</li>
+              )}
+              <li>{user.fromUserId.about.slice(0, 30) + "..."}</li>
+            </ul>
+            <div className="card-actions flex gap-4 my-auto   ">
+              <button className="btn btn-success">accept</button>
+              <button className="btn btn-error w-19 ">reject</button>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default Request;

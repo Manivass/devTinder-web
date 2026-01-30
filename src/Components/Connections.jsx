@@ -35,7 +35,10 @@ const Connections = () => {
       </h2>
       {connections.map((user) => {
         return (
-          <div className="flex flex-row gap-5 px-6 py-5 bg-base-300 rounded-lg my-2 shadow-md shadow-base-200">
+          <div
+            key={user._id}
+            className="flex flex-row gap-5 px-6 py-5 bg-base-300 rounded-lg my-2 shadow-md shadow-base-200"
+          >
             <img className="w-19 h-19 rounded-full" src={user.photoURL} />
             <ul>
               <li className="text-xl font-semibold ">

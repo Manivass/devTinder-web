@@ -25,6 +25,7 @@
 - Edit Profile Feature
 - show to toast message on save of profile
 - connection feature
+- show - connection request
 
 Router-Body
 NavBar
