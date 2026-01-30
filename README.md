@@ -24,6 +24,7 @@
 - created Feed Slice
 - Edit Profile Feature
 - show to toast message on save of profile
+- connection feature
 
 Router-Body
 NavBar

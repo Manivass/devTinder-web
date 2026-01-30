@@ -8,22 +8,32 @@ import FeedCards from "./FeedCards";
 const Feed = () => {
   const dispatch = useDispatch();
   const feed = useSelector((store) => store.feed);
+
   const getFeed = async () => {
-    if (feed) return;
-    const res = await axios.get(BASE_URL + "/user/feed", {
-      withCredentials: true,
-    });
-    dispatch(addFeed(res?.data?.feed));
+    try {
+      if (feed) return;
+      const res = await axios.get(BASE_URL + "/user/feed", {
+        withCredentials: true,
+      });
+      dispatch(addFeed(res?.data?.feed));
+    } catch (err) {
+      console.log(err?.response?.data);
+    }
   };
   useEffect(() => {
     getFeed();
   }, []);
-  return (
-    feed && (
-      <div className="flex justify-center my-8">
-        <FeedCards user={feed[0]} />
+  if (!feed) return;
+  if (feed.length === 0)
+    return (
+      <div>
+        <p className="text-md">No Users found</p>
       </div>
-    )
+    );
+  return (
+    <div className="flex justify-center my-8">
+      <FeedCards user={feed[0]} />
+    </div>
   );
 };
 
