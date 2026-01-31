@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { BASE_URL } from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequestReceived } from "../store/requestReceivedSlice";
+import Connections from "./Connections";
 
 const Request = () => {
   const request = useSelector((store) => store.requestReceived);
@@ -10,15 +11,33 @@ const Request = () => {
 
   const dispatch = useDispatch();
   const fetchConnectionRequest = async () => {
-    let res = await axios.get(BASE_URL + "/user/request/received", {
-      withCredentials: true,
-    });
-    dispatch(addRequestReceived(res?.data?.connections));
+    try {
+      let res = await axios.get(BASE_URL + "/user/request/received", {
+        withCredentials: true,
+      });
+      dispatch(addRequestReceived(res?.data?.connections));
+    } catch (err) {
+      console.log(err.response.data);
+    }
   };
 
   useEffect(() => {
     fetchConnectionRequest();
   }, []);
+
+  const handleConnectionStatus = async (status, id) => {
+    try {
+      await axios.post(
+        BASE_URL + "/request/review/" + status + "/" + id,
+        {},
+        { withCredentials: true },
+      );
+      const removeFromRequest = request.filter((user) => user._id !== id);
+      dispatch(addRequestReceived(removeFromRequest));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   if (!request) return;
   if (request.length === 0)
@@ -51,8 +70,18 @@ const Request = () => {
               <li>{user.fromUserId.about.slice(0, 30) + "..."}</li>
             </ul>
             <div className="card-actions flex gap-4 my-auto   ">
-              <button className="btn btn-success">accept</button>
-              <button className="btn btn-error w-19 ">reject</button>
+              <button
+                className="btn btn-success"
+                onClick={() => handleConnectionStatus("accepted", user._id)}
+              >
+                accept
+              </button>
+              <button
+                className="btn btn-error w-19 "
+                onClick={() => handleConnectionStatus("rejected", user._id)}
+              >
+                reject
+              </button>
             </div>
           </div>
         );
