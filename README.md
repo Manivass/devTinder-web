@@ -26,6 +26,7 @@
 - show to toast message on save of profile
 - connection feature
 - show - connection request
+- created ignored and accepted connection from feed 
 
 Router-Body
 NavBar
