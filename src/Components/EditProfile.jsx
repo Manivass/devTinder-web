@@ -5,7 +5,9 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/userSlice";
+import { useNavigate } from "react-router";
 const EditProfile = (user) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState(user?.user?.firstName);
   const [lastName, setLastName] = useState(user?.user?.lastName);
@@ -15,7 +17,6 @@ const EditProfile = (user) => {
   const [photoURL, setPhotoUrl] = useState(user?.user?.photoURL);
   const [error, setError] = useState("");
   const [toast, setToast] = useState(false);
-  const userChange = { firstName, lastName, age, about, gender, photoURL };
 
   const handleSave = async () => {
     try {
@@ -26,9 +27,11 @@ const EditProfile = (user) => {
       );
       dispatch(addUser(res?.data?.data));
       setToast(true);
+
       setTimeout(() => {
         setToast(false);
       }, 3000);
+      navigate("/");
     } catch (err) {
       setError(err?.response?.data);
     }
@@ -112,7 +115,22 @@ const EditProfile = (user) => {
         </div>
       </div>
       <div>
-        <FeedCards user={userChange} />
+        <div>
+          <div className="card bg-base-300 w-92 shadow-sm">
+            <figure className=" pt-5">
+              <img src={photoURL} alt={firstName} className=" h-54 w-54" />
+            </figure>
+            <div className="card-body items-center text-center">
+              <h2 className="card-title">{firstName + " " + lastName}</h2>
+              {age && gender && <p>{age + " " + gender}</p>}
+              <p>{about}</p>
+              <div className="card-actions">
+                <button className="btn btn-error">Ignore</button>
+                <button className="btn btn-success">Interested</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {toast && (

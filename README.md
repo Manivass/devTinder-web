@@ -27,6 +27,8 @@
 - connection feature
 - show - connection request
 - created ignored and accepted connection from feed 
+- SignIn Feature
+- E2E testing
 
 Router-Body
 NavBar
