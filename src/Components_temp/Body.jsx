@@ -1,11 +1,11 @@
 import { Outlet, useNavigate } from "react-router";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Navbar from "./temp123..jsx";
+import Footer from "./Footer.jsx";
 import { useEffect } from "react";
 import axios from "axios";
-import { BASE_URL } from "../utils/constant";
+import { BASE_URL } from "../utils/constant.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../store/userSlice";
+import { addUser } from "../store/userSlice.jsx";
 
 const Body = () => {
   const user = useSelector((store) => store.user);

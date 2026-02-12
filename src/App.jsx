@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
-import Body from "./Components/Body";
-import Login from "./Components/Login";
-import Profile from "./Components/Profile";
+import Body from "./Components_temp/Body";
+import Login from "./Components_temp/Login";
+import Profile from "./Components_temp/Profile";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
-import Feed from "./Components/Feed";
-import Connections from "./Components/Connections";
-import Request from "./Components/Request";
+import Feed from "./Components_temp/Feed";
+import Connections from "./Components_temp/Connections";
+import Request from "./Components_temp/Request";
 const App = () => {
   return (
     <div>
