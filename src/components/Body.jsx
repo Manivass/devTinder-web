@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router";
-import Navbar from "./temp123..jsx";
+import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
 import { useEffect } from "react";
 import axios from "axios";
