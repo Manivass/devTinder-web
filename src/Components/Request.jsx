@@ -58,16 +58,16 @@ const Request = () => {
             <img
               className="w-19 h-19 rounded-full"
               alt="photo"
-              src={user.fromUserId.photoURL}
+              src={user?.fromUserId?.photoURL}
             />
             <ul>
               <li className="text-xl font-semibold ">
-                {user.fromUserId.firstName + " " + user.fromUserId.lastName}
+                {user?.fromUserId?.firstName + " " + user?.fromUserId?.lastName}
               </li>
               {user.age && user.gender && (
-                <li>{user.fromUserId.age + "," + user.fromUserId.gender}</li>
+                <li>{user?.fromUserId?.age + "," + user?.fromUserId?.gender}</li>
               )}
-              <li>{user.fromUserId.about.slice(0, 30) + "..."}</li>
+              <li>{user?.fromUserId?.about.slice(0, 30) + "..."}</li>
             </ul>
             <div className="card-actions flex gap-4 my-auto   ">
               <button
