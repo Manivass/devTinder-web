@@ -9,6 +9,7 @@ import appStore from "./store/appStore";
 import Feed from "./Components/Feed.jsx";
 import Connections from "./Components/Connections.jsx";
 import Request from "./Components/Request.jsx";
+import Premium from "./Components/Premium.jsx";
 const App = () => {
   return (
     <div>
@@ -17,6 +18,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Body />}>
               <Route path="/" element={<Feed />} />
+              <Route path="/premium" element={<Premium />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/connections" element={<Connections />} />

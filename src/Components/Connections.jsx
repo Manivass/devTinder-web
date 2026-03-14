@@ -22,12 +22,13 @@ const Connections = () => {
     getConnections();
   }, []);
   if (!connections) return;
-  if (connections.length === 0)
+  if (connections.length === 0) {
     return (
-      <div>
-        <p>No connections found</p>
+      <div className="text-center mt-10">
+        <h2 className="text-xl font-semibold">No Connections Found</h2>
       </div>
     );
+  }
   return (
     <div className="mx-auto  max-w-175 my-2">
       <h2 className="text-2xl mb-3 text-center font-semibold">
