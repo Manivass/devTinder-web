@@ -9,7 +9,7 @@ const Premium = () => {
     verifyPayment();
   }, []);
   var verifyPayment = async () => {
-    const res = await axios.get(BASE_URL + "/payment/verification");
+    const res = await axios.get(BASE_URL + "/payment/verification" , {withCredentials : true});
     setPremiumUser(res?.data?.isPremium);
   };
 
