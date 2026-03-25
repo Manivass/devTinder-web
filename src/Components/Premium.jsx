@@ -9,19 +9,17 @@ const Premium = () => {
     verifyPayment();
   }, []);
   var verifyPayment = async () => {
-    setTimeout(async () => {
-      try {
-        const res = await axios.get(BASE_URL + "/payment/verification", {
-          withCredentials: true,
-        });
-        if (res.data.isPremium) {
-          setPremiumUser(true);
-        }
-        console.log(res);
-      } catch (err) {
-        console.log(err?.data?.message);
+    try {
+      const res = await axios.get(BASE_URL + "/payment/verification", {
+        withCredentials: true,
+      });
+      if (res.data.isPremium) {
+        setPremiumUser(true);
       }
-    }, 1500);
+      console.log(res);
+    } catch (err) {
+      console.log(err?.data?.message);
+    }
   };
 
   const handleBuyPremium = async (type) => {
@@ -49,9 +47,7 @@ const Premium = () => {
         theme: {
           color: "#F37254",
         },
-        handler: async function (response) {
-          await verifyPayment(response);
-        },
+        handler: verifyPayment,
       };
       const rzp = new window.Razorpay(options);
       rzp.open();
