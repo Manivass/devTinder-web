@@ -4,16 +4,19 @@ import { useEffect, useState } from "react";
 
 const Premium = () => {
   const [isPremiumUser, setPremiumUser] = useState(false);
-  console.log(isPremiumUser);
 
   useEffect(() => {
     verifyPayment();
   }, []);
   var verifyPayment = async () => {
-    const res = await axios.get(BASE_URL + "/payment/verification", {
-      withCredentials: true,
-    });
-    setPremiumUser(res?.data?.isPremium);
+    try {
+      const res = await axios.get(BASE_URL + "/payment/verification", {
+        withCredentials: true,
+      });
+      setPremiumUser(res?.data?.isPremium);
+    } catch (err) {
+      console.log(err?.data?.message);
+    }
   };
 
   const handleBuyPremium = async (type) => {
@@ -41,7 +44,7 @@ const Premium = () => {
         theme: {
           color: "#F37254",
         },
-        handle: verifyPayment,
+        handler: verifyPayment,
       };
       const rzp = new window.Razorpay(options);
       rzp.open();
