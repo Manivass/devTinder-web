@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 
 const Premium = () => {
   const [isPremiumUser, setPremiumUser] = useState(false);
+  console.log(isPremiumUser);
 
   useEffect(() => {
     verifyPayment();
   }, []);
   var verifyPayment = async () => {
-    const res = await axios.get(BASE_URL + "/payment/verification" , {withCredentials : true});
+    const res = await axios.get(BASE_URL + "/payment/verification", {
+      withCredentials: true,
+    });
     setPremiumUser(res?.data?.isPremium);
   };
 
